@@ -29,31 +29,50 @@ https://github.com/fudan-generative-vision/champ/assets/82803297/b4571be6-dfb0-4
 # Framework
 ![framework](assets/framework.jpg)
 
-# Installation
-- System requirement: Ubuntu20.04
-- Tested GPUs: A100
+# ⚒️ Installation
 
-Create conda environment: 
-```bash
-  conda create -n champ python=3.10
-  conda activate champ
+prerequisites: `3.11>=python>=3.8`, `CUDA>=11.3`, `ffmpeg` and `git`.
+
+Python and Git:
+
+- Python 3.10.11: https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe
+- git: https://git-scm.com/download/win
+
+- Install [ffmpeg](https://ffmpeg.org/) for your operating system
+  (https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/)
+  
+  notice:step 4 use windows system Set Enviroment Path.
+
+Give unrestricted script access to powershell so venv can work:
+
+- Open an administrator powershell window
+- Type `Set-ExecutionPolicy Unrestricted` and answer A
+- Close admin powershell window
+
 ```
-Install packages with `pip`:
-```bash
-  pip install -r requirements.txt
+git clone --recurse-submodules https://github.com/sdbds/champ-for-windows/
 ```
 
-# Download pretrained models
+Install with Powershell run `install.ps1` or `install-cn.ps1`(for Chinese)
 
-1. Download pretrained weight of base models: 
-    - [StableDiffusion V1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5)
-    - [sd-vae-ft-mse](https://huggingface.co/stabilityai/sd-vae-ft-mse)
-    - [image_encoder](https://huggingface.co/lambdalabs/sd-image-variations-diffusers/tree/main/image_encoder)
+### Use local model
 
-2. Download our checkpoints: \
-Our [checkpoints](https://drive.google.com/drive/folders/1hZiOHG-qDf0Pj7tvfxC70JQ6wHUvUDoY?usp=sharing) consist of denoising UNet, guidance encoders, Reference UNet, and motion module.
+Add loading local safetensors or ckpt,you can change `config/prompts/animation.yaml` about `pretrained_weights` for your local SD1.5 model.
+such as `"D:\\stablediffusion-webui\\models\\Stable-diffusion\\v1-5-pruned.ckpt"`
 
-Finally, these pretrained models should be organized as follows:
+## No need Download models manually
+
+~~# Download pretrained models~~
+
+~~1. Download pretrained weight of base models:~~ 
+    ~~- [StableDiffusion V1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5)~~
+    ~~- [sd-vae-ft-mse](https://huggingface.co/stabilityai/sd-vae-ft-mse)~~
+    ~~- [image_encoder](https://huggingface.co/lambdalabs/sd-image-variations-diffusers/tree/main/image_encoder)~~
+
+~~2. Download our checkpoints:~~
+~~Our [checkpoints](https://drive.google.com/drive/folders/1hZiOHG-qDf0Pj7tvfxC70JQ6wHUvUDoY?usp=sharing) consist of denoising UNet, guidance encoders, Reference UNet, and motion module.~~
+
+~~Finally, these pretrained models should be organized as follows:~~
 
 ```text
 ./pretrained_models/
@@ -68,10 +87,6 @@ Finally, these pretrained models should be organized as follows:
 |-- image_encoder
 |   |-- config.json
 |   `-- pytorch_model.bin
-|-- sd-vae-ft-mse
-|   |-- config.json
-|   |-- diffusion_pytorch_model.bin
-|   `-- diffusion_pytorch_model.safetensors
 `-- stable-diffusion-v1-5
     |-- feature_extractor
     |   `-- preprocessor_config.json
@@ -84,10 +99,14 @@ Finally, these pretrained models should be organized as follows:
 
 # Inference
 We have provided several sets of [example data](https://drive.google.com/file/d/1-sJlnnZu-nTNTvRtvFVr_y-2_CA5-_Yz/view?usp=sharing) for inference. Please first download and place them in the `example_data` folder. 
+
 Here is the command for inference:
 ```bash
   python inference.py --config configs/inference.yaml
 ```
+
+or Powershell run with `run_inference.ps1`
+
 Animation results will be saved in `results` folder. You can change the reference image or the guidance motion by modifying `inference.yaml`. 
 
 You can also extract the driving motion from any videos and then render with Blender. We will later provide the instructions and scripts for this.
