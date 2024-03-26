@@ -38,5 +38,13 @@ if ($install_SD15 -eq "y" -or $install_SD15 -eq "Y" -or $install_SD15 -eq "") {
     }
 }
 
+Write-Output "安装Video_controlnet_aux..."
+
+git submodule update --recursive --init
+
+Set-Location $PSScriptRoot/video_controlnet_aux
+pip install -r requirements.txt
+pip install -r requirements-video.txt
+
 Write-Output "安装完毕"
 Read-Host | Out-Null ;
