@@ -57,7 +57,7 @@ Install with Powershell run `install.ps1` or `install-cn.ps1`(for Chinese)
 
 ### Use local model
 
-Add loading local safetensors or ckpt,you can change `configs/inference.yaml` about `pretrained_models` for your local SD1.5 model.
+Add loading local safetensors or ckpt,you can change `configs/inference.yaml` about `base_model_path` for your local SD1.5 model.
 such as `"D:\\stablediffusion-webui\\models\\Stable-diffusion\\v1-5-pruned.ckpt"`
 
 ## No need Download models manually
