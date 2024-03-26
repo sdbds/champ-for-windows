@@ -111,6 +111,8 @@ Animation results will be saved in `results` folder. You can change the referenc
 
 You can also extract the driving motion from any videos and then render with Blender. We will later provide the instructions and scripts for this.
 
+Note: The default motion-01 in `inference.yaml` has more than 500 frames and takes about 36GB VRAM. If you encounter VRAM issues, consider switching to other example data with less frames.
+
 # Acknowledgements
 We thank the authors of [MagicAnimate](https://github.com/magic-research/magic-animate), [Animate Anyone](https://github.com/HumanAIGC/AnimateAnyone), and [AnimateDiff](https://github.com/guoyww/AnimateDiff) for their excellent work. Our project is built upon [Moore-AnimateAnyone](https://github.com/MooreThreads/Moore-AnimateAnyone), and we are grateful for their open-source contributions.
 
